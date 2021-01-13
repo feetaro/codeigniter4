@@ -41,6 +41,20 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		// E.g.:
 		// $this->session = \Config\Services::session();
+
+/*
+	// aaa
+        $appPaths = new \Config\Paths();
+        $appViewPaths = $appPaths->viewDirectory;
+
+        $loader = new \Twig\Loader\FilesystemLoader($appViewPaths);
+
+        $this->twig = new \Twig\Environment($loader, [
+            'cache' => WRITEPATH.'/cache/twig',
+        ]);
+*/
+
+
 	}
 
 }

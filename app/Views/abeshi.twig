@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+
+<html lang="ja">
+  <head>
+    <title>Hello, world!</title>
+  </head>
+  <body>
+
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>値その1</th>
+            <th>値その2</th>
+        </tr>
+    </thead>
+    <tbody>
+
+	{% for key, val in aaa %}
+        <tr>
+            <td>{{ val.0 }}</td>
+            <td>{{ val.1 }}</td>
+        </tr>
+
+	{% endfor %}
+
+
+
+    </tbody>
+</table>
+
+
+{{ bbb }}
+
+
+
+  </body>
+</html>
