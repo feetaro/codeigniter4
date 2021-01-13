@@ -1,0 +1,42 @@
+version: '3'
+
+# ネットワーク設定
+networks:
+  services:
+    driver: bridge
+
+# コンテナ
+services:
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/php-dev/Dockerfile
+    environment:
+      TZ: Asia/Tokyo
+    ports:
+      - 80:80
+    networks:
+      - services
+    depends_on:
+      - db
+    volumes:
+      - ./:/var/www/html/:cached
+      - ./var:/var/www/html/var:delegated
+  db:
+    build:
+      context: .
+      dockerfile: ./docker/mysql/Dockerfile
+    environment:
+      TZ: Asia/Tokyo
+      MYSQL_DATABASE: ec
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_USER: ec
+      MYSQL_PASSWORD: ec
+    volumes:
+      - ./docker/mysql/mysql-data:/var/lib/mysql:delegated
+      - ./docker/mysql/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf:delegated
+      - ./docker/mysql/init.d:/docker-entrypoint-initdb.d:delegated
+    ports:
+      - 13315:3306
+    networks:
+      - services
